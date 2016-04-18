@@ -1,0 +1,166 @@
+{% from 'macros.html' import taskinput, schedulelog -%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Remote Sockets</title>
+
+    <link href="{{ url_for('.static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('.static', filename='grid.css') }}" rel="stylesheet">
+    <link href="{{ url_for('.static', filename='style.css') }}" rel="stylesheet">
+
+    <script type="text/javascript" src="{{ url_for('.static', filename='jquery-2.2.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='jquery.animate-colors-min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='script.js') }}"></script>
+    <script>
+      var user = '{{ current_user.name }}';
+      var remoteAddr = '{{ current_user.remote_addr }}';
+      var endpoints = {
+        'ping-device': '{{ url_for('api.ping_device') }}',
+        'switch-socket': '{{ url_for('api.switch_socket') }}',
+        'change-description': '{{ url_for('api.change_description') }}',
+        'save-task': '{{ url_for('api.save_task') }}',
+        'delete-task': '{{ url_for('api.delete_task') }}'
+      };
+    </script>
+    <script id="form-template" type="text/template">
+    {{- taskinput(current_user.sockets, None) |indent(6)|safe }}
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="alert alert-info" id="message-box">
+        <strong>ESP8266</strong> is online.
+      </div>
+
+      <div class="alert alert-danger" id="connection-error">
+        <strong>Oh snap!</strong> The ESP8266 is not reachable.
+        <span></span>
+      </div>
+
+      <div class="alert alert-danger" id="description-change-failed">
+        <strong>Oh snap!</strong> Could not rename your socket description.
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Power Socket Remote Control</h3>
+            </div>
+            <div class="panel-body">
+            {% if current_user.sockets %}
+            {% for socket in current_user.sockets %}
+              <div class="col-sm-6 col-sm-push-6" id="description-socket-{{ socket.number }}" data-description-for="{{ socket.number }}">
+                <span class="description-text">{{ socket.description }}</span>
+                <span class="description-input">
+                  <input type="text" data-desc-input-for="{{ socket.number }}">
+                  <input type="button" class="btn btn-xs btn-link" data-save-btn-for="{{ socket.number }}" value="Save">
+                  <input type="button" class="btn btn-xs btn-link" value="Cancel">
+                </span>
+
+                <span class="success-img" id="success-img-{{ socket.number }}">
+                  <img src="{{ url_for('.static', filename='success.png') }}">
+                </span>
+              </div>
+              <div class="col-sm-3 col-sm-pull-6">
+                <input type="button" class="btn btn-default" id="btn-on-{{ socket.number }}" data-socket-id="{{ socket.number }}" value="Switch On">
+              </div>
+              <div class="col-sm-3 col-sm-pull-6">
+                <input type="button" class="btn btn-default" id="btn-off-{{ socket.number }}" data-socket-id="{{ socket.number }}" value="Switch Off">
+              </div>
+            {% endfor %}
+            {% else %}
+              <div class="col-sm-12" style="text-align:center; font-weight:bold">
+                No sockets defined
+              </div>
+            {% endif %}
+            <!--
+              <div class="col-sm-12">
+                <a href="#" id="add-socket-link">Add Socket</a>
+              </div>
+            -->
+            </div>
+          </div>
+        </div>
+      </div> <!-- /row "socket-remote" -->
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Socket Schedules</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <table id="user-schedule" class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Task ID </th>
+                      <th>Time (HH:MM)</th>
+                      {% for socket in current_user.sockets -%}
+                      <th>{{ socket.description }}</th>
+                      {% endfor -%}
+                      <th>Active</th>
+                      <th>Changes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if current_user.schedule -%}
+                    {% for task in current_user.schedule -%}
+                    {{- taskinput(current_user.sockets, task) |indent(20)|safe }}
+                    {% endfor -%}
+                    {% else %}
+                    <tr>
+                      <td id="empty-schedule-row" colspan="100%">No tasks defined</td>
+                    </tr>
+                    {%- endif %}
+                  </tbody>
+                </table>
+
+                <a href="#" id="new-task-link">Create New Task</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> <!-- /row "socket-schedule" -->
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Schedule Log</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <table id="user-schedule" class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Task</th>
+                      <th>Success</th>
+                      <th>Response</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {{ schedulelog(task_log) }}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /row "schedule log" -->
+
+    </div> <!-- /container -->
+    <script type="text/javascript">
+      $(document).ready(initSite);
+    </script>
+  </body>
+</html>

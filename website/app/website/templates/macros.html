@@ -1,0 +1,45 @@
+{% macro taskinput(sockets, task) %}
+<tr>
+  <td name="task-id-field">#{{ task.id }}</td>
+  <td>
+    <input type="text" size="5" name="time" value="{{ task.time }}" autocomplete="off">
+  </td>
+  {% for socket in sockets -%}
+  <td>
+    <select name="{{ socket.number }}" autocomplete="off">
+      <option value="2">no change</option>
+      <option value="1" {%- if socket.number in task.turn_on %} selected{% endif %}>turn on</option>
+      <option value="0" {%- if socket.number in task.turn_off %} selected{% endif %}>turn off</option>
+    </select>
+  </td>
+  {% endfor -%}
+  <td>
+    <input type="checkbox" name="active" value="y" autocomplete="off"
+      {%- if task.active %} checked{% endif %}>
+  </td>
+  <td>
+    <a href="#" name="save-task-link">Save</a>,
+    <a href="#" name="delete-task-link">Delete</a>
+    <input name="task-id" type="hidden" value="{{ task.id or 0 }}">
+  </td>
+</tr>
+{% endmacro -%}
+
+{% macro schedulelog(log) %}
+{% if log %}
+<span>Showing last {{ log |length }} log entries:</span>
+{% for entry in log %}
+<tr>
+  <td name="task-log-time">{{ entry.timestamp }}</td>
+  <td>#{{ entry.task_id }}</td>
+  <td>{% if entry.success %}yes{% else %}no{% endif %}</td>
+  <td>{{ entry.response }}</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr>
+  <td colspan="100%">Schedule log is empty</td>
+</tr>
+{% endif %}
+
+{% endmacro %}

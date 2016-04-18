@@ -1,0 +1,89 @@
+.row  {
+  margin-bottom: 0;
+}
+
+.col-sm-12  {
+  background: #fff;
+  border-style: none;
+}
+.column {
+  text-align: center;
+}
+
+.panel-primary  {
+  margin-bottom: 0;
+}
+.panel-body {
+  padding: 0;
+  border-width: thin;
+}
+.col-sm-3 {
+  text-align: center;
+  background: #fff;
+  border-top: none;
+  border-bottom: none;
+}
+.col-sm-6 {
+  background: #fff;
+  border-top: none;
+  border-bottom: none;
+}
+.col-sm-5  {
+  background: #fff;
+}
+.btn-default  {
+  width: 90%;
+}
+
+.description-input  {
+  display: none;
+}
+.description-input > input[type=text] {
+  height: 34px;
+}
+.description-text {
+  line-height: 34px;
+}
+
+.success-img  {
+  display: none;
+  float: right;
+  line-height: 34px;
+}
+
+.alert  {
+  display: none;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.table {
+  text-align: center;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
+.table > thead > tr > th,td  {
+  text-align: center;
+  border-top: 0;
+  border-bottom: 2px solid #ddd;
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+}
+.table > tbody > tr > td  {
+  text-align: center;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+  vertical-align: middle;
+}
+#empty-schedule-row {
+  font-size: 105%;
+  font-weight: bold;
+  height: 60px;
+  vertical-align: middle;
+}
+a[name='save-task-link']  {
+  /*display: none;*/
+}
+
