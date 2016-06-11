@@ -1,0 +1,177 @@
+# German translations for PROJECT.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-05-16 00:23+0200\n"
+"PO-Revision-Date: 2016-05-16 00:51+0200\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: app/website/templates/index.html:9
+msgid "Remote Sockets"
+msgstr "Remote Sockets"
+
+#: app/website/templates/index.html:38
+msgid "is online"
+msgstr "ist erreichbar"
+
+#: app/website/templates/index.html:42 app/website/templates/index.html:47
+msgid "Oh snap!"
+msgstr "Oh nein!"
+
+#: app/website/templates/index.html:42
+msgid "The ESP8266 is not reachable"
+msgstr "Der ESP8266 ist nicht erreichbar"
+
+#: app/website/templates/index.html:47
+msgid "Could not rename your socket description"
+msgstr "Die Steckdose konnte nicht umbenannt werden"
+
+#: app/website/templates/index.html:54
+msgid "Power Socket Remote Control"
+msgstr "Steckdosen-Fernsteuerung"
+
+#: app/website/templates/index.html:63 app/website/templates/macros.html:21
+msgid "Save"
+msgstr "Speichern"
+
+#: app/website/templates/index.html:64
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: app/website/templates/index.html:72
+msgid "Switch On"
+msgstr "Einschalten"
+
+#: app/website/templates/index.html:75
+msgid "Switch Off"
+msgstr "Ausschalten"
+
+#: app/website/templates/index.html:80
+msgid "No sockets defined"
+msgstr "Keine Steckdosen angelegt"
+
+#: app/website/templates/index.html:85
+msgid "Add Socket"
+msgstr "Steckdose hinzufügen"
+
+#: app/website/templates/index.html:97
+msgid "Socket Schedules"
+msgstr "Steckdosen-Zeitplan"
+
+#: app/website/templates/index.html:104
+msgid "Task ID"
+msgstr "Aufgaben-ID"
+
+#: app/website/templates/index.html:105
+msgid "Time (HH:MM)"
+msgstr "Zeit (HH:MM)"
+
+#: app/website/templates/index.html:109
+msgid "Active"
+msgstr "Aktiv"
+
+#: app/website/templates/index.html:110
+msgid "Changes"
+msgstr "Änderungen"
+
+#: app/website/templates/index.html:120
+msgid "No tasks defined"
+msgstr "Keine Aufgaben angelegt"
+
+#: app/website/templates/index.html:126
+msgid "Create New Task"
+msgstr "Neue Aufgabe anlegen"
+
+#: app/website/templates/index.html:138
+msgid "Schedule Log"
+msgstr "Zeitplan-Logbuch"
+
+#: app/website/templates/index.html:145
+msgid "Time"
+msgstr "Zeit"
+
+#: app/website/templates/index.html:146
+msgid "Task"
+msgstr "Aufgabe"
+
+#: app/website/templates/index.html:147
+msgid "Success"
+msgstr "Erfolg"
+
+#: app/website/templates/index.html:148
+msgid "Response"
+msgstr "Antwort"
+
+#: app/website/templates/login.html:8
+msgid "Signin"
+msgstr "Anmeldung"
+
+#: app/website/templates/login.html:18
+msgid "Please sign in"
+msgstr "Bitte Anmelden"
+
+#: app/website/templates/login.html:21
+msgid "Wrong username or password. Please try again"
+msgstr "Falscher Benutzername oder falsches Password. Bitte erneut versuchen"
+
+#: app/website/templates/login.html:24
+msgid "Username"
+msgstr "Benutzername"
+
+#: app/website/templates/login.html:26
+msgid "Password"
+msgstr "Password"
+
+#: app/website/templates/login.html:30
+msgid "Remember me"
+msgstr "Anmeldung merken"
+
+#: app/website/templates/login.html:33
+msgid "Sign in"
+msgstr "Anmelden"
+
+#: app/website/templates/macros.html:10
+msgid "no change"
+msgstr "keine Änderung"
+
+#: app/website/templates/macros.html:11
+msgid "turn on"
+msgstr "einschalten"
+
+#: app/website/templates/macros.html:12
+msgid "turn off"
+msgstr "ausschalten"
+
+#: app/website/templates/macros.html:22
+msgid "Delete"
+msgstr "Löschen"
+
+#: app/website/templates/macros.html:30
+#, python-format
+msgid "Showing last %(amount)s log entries"
+msgstr "Die letzten %(amount)s Einträge"
+
+#: app/website/templates/macros.html:35
+msgid "yes"
+msgstr "ja"
+
+#: app/website/templates/macros.html:35
+msgid "no"
+msgstr "nein"
+
+#: app/website/templates/macros.html:41
+msgid "Schedule log is empty"
+msgstr "Das Logbuch ist leer"

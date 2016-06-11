@@ -5,32 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Signin</title>
+    <title>{{ _('Signin') }}</title>
 
     <link href="{{ url_for('.static', filename='bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('.static', filename='signin.css') }}" rel="stylesheet">
   </head>
 
   <body>
+	<div class="pull-right lang-flags">
+	  <a href="?lang=en">
+        <img src="{{ url_for('.static', filename='flag_uk.svg') }}" alt="Switch to English">
+      </a>
+	  <a href="?lang=de">
+        <img src="{{ url_for('.static', filename='flag_de.svg') }}" alt="Zu Deutsch wechseln">
+	  </a>
+	</div>
     <div class="container">
 
       <form class="form-signin" action="{{ url_for('.login') }}" method="POST">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">{{ _('Please sign in') }}</h2>
         {% if error %}
         <div class="alert alert-danger">
-          Wrong username or password. Please try again.
+          {{ _('Wrong username or password. Please try again') }}.
         </div>
         {% endif %}
-        <label for="inputEmail" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <label for="inputEmail" class="sr-only">{{ _('Username') }}</label>
+        <input type="text" id="inputUsername" name="username" class="form-control"
+          placeholder="{{ _('Username') }}" required autofocus>
+        <label for="inputPassword" class="sr-only">{{ _('Password') }}</label>
+        <input type="password" id="inputPassword" name="password" class="form-control"
+          placeholder="{{ _('Password') }}" required>
         <div class="checkbox">
           <label>
-            <input type="checkbox" name="remember" value="true"> Remember me
+            <input type="checkbox" name="remember" value="true"> {{ _('Remember me') }}
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ _('Sign in') }}</button>
       </form>
 
     </div> <!-- /container -->

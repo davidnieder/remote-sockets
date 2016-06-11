@@ -4,6 +4,7 @@
 class Config(object):
     DEBUG = True
     SECRET_KEY = 'not so secret'
+    LANGUAGES = 'en', 'de'
 
 
 class ConfigProduction(Config):

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Remote Sockets</title>
+    <title>{{ _('Remote Sockets') }}</title>
 
     <link href="{{ url_for('.static', filename='bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('.static', filename='grid.css') }}" rel="stylesheet">
@@ -32,26 +32,35 @@
   </head>
 
   <body>
+	<div class="pull-right lang-flags">
+	  <a href="?lang=en">
+        <img src="{{ url_for('.static', filename='flag_uk.svg') }}" alt="Switch to English">
+      </a>
+	  <a href="?lang=de">
+        <img src="{{ url_for('.static', filename='flag_de.svg') }}" alt="Zu Deutsch wechseln">
+	  </a>
+	</div>
+
     <div class="container">
 
       <div class="alert alert-info" id="message-box">
-        <strong>ESP8266</strong> is online.
+        <strong>ESP8266</strong> {{ _('is online') }}.
       </div>
 
       <div class="alert alert-danger" id="connection-error">
-        <strong>Oh snap!</strong> The ESP8266 is not reachable.
+        <strong>{{ _('Oh snap!') }}</strong> {{ _('The ESP8266 is not reachable') }}.
         <span></span>
       </div>
 
       <div class="alert alert-danger" id="description-change-failed">
-        <strong>Oh snap!</strong> Could not rename your socket description.
+        <strong>{{ _('Oh snap!') }}</strong> {{ _('Could not rename your socket description') }}.
       </div>
 
       <div class="row">
         <div class="col-sm-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">Power Socket Remote Control</h3>
+              <h3 class="panel-title">{{ _('Power Socket Remote Control') }}</h3>
             </div>
             <div class="panel-body">
             {% if current_user.sockets %}
@@ -60,8 +69,8 @@
                 <span class="description-text">{{ socket.description }}</span>
                 <span class="description-input">
                   <input type="text" data-desc-input-for="{{ socket.number }}">
-                  <input type="button" class="btn btn-xs btn-link" data-save-btn-for="{{ socket.number }}" value="Save">
-                  <input type="button" class="btn btn-xs btn-link" value="Cancel">
+                  <input type="button" class="btn btn-xs btn-link" data-save-btn-for="{{ socket.number }}" value="{{ _('Save') }}">
+                  <input type="button" class="btn btn-xs btn-link" value="{{ _('Cancel') }}">
                 </span>
 
                 <span class="success-img" id="success-img-{{ socket.number }}">
@@ -69,20 +78,20 @@
                 </span>
               </div>
               <div class="col-sm-3 col-sm-pull-6">
-                <input type="button" class="btn btn-default" id="btn-on-{{ socket.number }}" data-socket-id="{{ socket.number }}" value="Switch On">
+                <input type="button" class="btn btn-default" id="btn-on-{{ socket.number }}" data-socket-id="{{ socket.number }}" value="{{ _('Switch On') }}">
               </div>
               <div class="col-sm-3 col-sm-pull-6">
-                <input type="button" class="btn btn-default" id="btn-off-{{ socket.number }}" data-socket-id="{{ socket.number }}" value="Switch Off">
+                <input type="button" class="btn btn-default" id="btn-off-{{ socket.number }}" data-socket-id="{{ socket.number }}" value="{{ _('Switch Off') }}">
               </div>
             {% endfor %}
             {% else %}
               <div class="col-sm-12" style="text-align:center; font-weight:bold">
-                No sockets defined
+                {{ _('No sockets defined') }}
               </div>
             {% endif %}
             <!--
               <div class="col-sm-12">
-                <a href="#" id="add-socket-link">Add Socket</a>
+                <a href="#" id="add-socket-link">{{ _('Add Socket') }}</a>
               </div>
             -->
             </div>
@@ -94,20 +103,20 @@
         <div class="col-sm-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">Socket Schedules</h3>
+              <h3 class="panel-title">{{ _('Socket Schedules') }}</h3>
             </div>
             <div class="panel-body">
               <div class="col-sm-12">
                 <table id="user-schedule" class="table table-hover">
                   <thead>
                     <tr>
-                      <th>Task ID </th>
-                      <th>Time (HH:MM)</th>
+                      <th>{{ _('Task ID') }}</th>
+                      <th>{{ _('Time (HH:MM)') }}</th>
                       {% for socket in current_user.sockets -%}
                       <th>{{ socket.description }}</th>
                       {% endfor -%}
-                      <th>Active</th>
-                      <th>Changes</th>
+                      <th>{{ _('Active') }}</th>
+                      <th>{{ _('Changes') }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -117,13 +126,13 @@
                     {% endfor -%}
                     {% else %}
                     <tr>
-                      <td id="empty-schedule-row" colspan="100%">No tasks defined</td>
+                      <td id="empty-schedule-row" colspan="100%">{{ _('No tasks defined') }}</td>
                     </tr>
                     {%- endif %}
                   </tbody>
                 </table>
 
-                <a href="#" id="new-task-link">Create New Task</a>
+                <a href="#" id="new-task-link">{{ _('Create New Task') }}</a>
               </div>
 
             </div>
@@ -135,17 +144,17 @@
         <div class="col-sm-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">Schedule Log</h3>
+              <h3 class="panel-title">{{ _('Schedule Log') }}</h3>
             </div>
             <div class="panel-body">
               <div class="col-sm-12">
                 <table id="user-schedule" class="table table-hover">
                   <thead>
                     <tr>
-                      <th>Time</th>
-                      <th>Task</th>
-                      <th>Success</th>
-                      <th>Response</th>
+                      <th>{{ _('Time') }}</th>
+                      <th>{{ _('Task') }}</th>
+                      <th>{{ _('Success') }}</th>
+                      <th>{{ _('Response') }}</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -11,7 +11,6 @@ from flask.ext.script import Manager, Command
 
 from app import create_app, database
 from app.models import User, Socket
-
 from config import Config
 
 
@@ -48,6 +47,7 @@ def adduser(admin=False):
 
 @manager.command
 def listusers():
+    """ Prints a list of all users in the database """
     users = User.load_all()
     for nr,user in zip(range(1, len(users)+1), users):
         print('{}. {} ({})'.format(nr, user.name, user.remote_addr))
@@ -60,8 +60,8 @@ def showsecrets(username):
         print('No such user: "{}"'.format(username))
         return 1
     else:
-        print('Client secret: ' + hexlify(user.client_secret))
-        print('Server secret: ' + hexlify(user.server_secret))
+        print('Client secret: ' + user.client_secret)
+        print('Server secret: ' + user.server_secret)
 
 @manager.command
 def setsecrets(username):
@@ -85,6 +85,24 @@ def setaddress(username):
 
     addr = raw_input('address (addr:port): ')
     user.update(remote_addr=addr)
+
+@manager.command
+def setpassword(username):
+    """ Sets a new password for a user """
+    user = User.load(username)
+    if user is None:
+        print('No such user: "{}"'.format(username))
+        return 1
+
+    pw = getpass('Password: ')
+    pw_confirm = getpass('Confirm: ')
+    if pw != pw_confirm:
+        print('Passwords do not match')
+        return 1
+
+    pw = generate_password_hash(pw)
+    user.update(password=pw)
+
 
 
 if __name__ == '__main__':

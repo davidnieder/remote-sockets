@@ -1,3 +1,7 @@
+.lang-flags img {
+  max-width: 40px;
+}
+
 .row  {
   margin-bottom: 0;
 }
